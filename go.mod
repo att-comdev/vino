@@ -1,4 +1,4 @@
-module github.com/att-comdev/sip
+module github.com/att-comdev/vino
 
 go 1.13
 
