@@ -1,3 +1,4 @@
 domain: airshipit.org
-repo: github.com/att-comdev/vino
-version: "2"
+layout: ansible.sdk.operatorframework.io/v1
+projectName: vino
+version: 3-alpha

@@ -23,17 +23,12 @@ spec:
         control-plane: controller-manager
     spec:
       containers:
-      - command:
-        - /manager
-        args:
-        - --enable-leader-election
-        image: controller:latest
-        name: manager
-        resources:
-          limits:
-            cpu: 100m
-            memory: 30Mi
-          requests:
-            cpu: 100m
-            memory: 20Mi
+        - name: manager
+          args:
+            - "--enable-leader-election"
+            - "--leader-election-id=vino"
+          env:
+            - name: ANSIBLE_GATHERING
+              value: explicit
+          image: controller:latest
       terminationGracePeriodSeconds: 10
