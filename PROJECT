@@ -1,3 +1,7 @@
 domain: airshipit.org
-repo: github.com/att-comdev/vino
+repo: vino
+resources:
+- group: airship
+  kind: Vino
+  version: v1
 version: "2"
