@@ -36,6 +36,7 @@ var (
 	setupLog = ctrl.Log.WithName("setup")
 )
 
+//nolint:errcheck
 func init() {
 	_ = clientgoscheme.AddToScheme(scheme)
 

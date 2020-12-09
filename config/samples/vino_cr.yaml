@@ -95,7 +95,7 @@ status:
         sushy?: complete|failed
         domains: complete|failed
         bmh: complete|failed
-        lastUpdated: 
+        lastUpdated:
     nodes:
         - node1:
             hypervisor:

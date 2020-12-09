@@ -4,6 +4,12 @@ IMG ?= controller:latest
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true"
 
+TOOLBINDIR          := tools/bin
+
+# linting
+LINTER              := $(TOOLBINDIR)/golangci-lint
+LINTER_CONFIG       := .golangci.yaml
+
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
 GOBIN=$(shell go env GOPATH)/bin
@@ -78,3 +84,16 @@ CONTROLLER_GEN=$(GOBIN)/controller-gen
 else
 CONTROLLER_GEN=$(shell which controller-gen)
 endif
+
+.PHONY: lint
+lint: $(LINTER)
+	@echo "Performing linting step..."
+	@./tools/whitespace_linter
+	@./$(LINTER) run --config $(LINTER_CONFIG)
+	@echo "Linting completed successfully"
+
+$(LINTER): $(TOOLBINDIR)
+	./tools/install_linter
+
+$(TOOLBINDIR):
+	mkdir -p $(TOOLBINDIR)
